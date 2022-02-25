@@ -1,0 +1,78 @@
+buildscript {
+  // Buildscript is evaluated before everything else so we can't use getExtOrDefault
+  def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['MobileReactNative_kotlinVersion']
+
+  repositories {
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.5.0'
+    // noinspection DifferentKotlinGradleVersion
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+def getExtOrDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['MobileReactNative_' + name]
+}
+
+def getExtOrIntegerDefault(name) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['MobileReactNative_' + name]).toInteger()
+}
+
+android {
+  compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+  buildToolsVersion getExtOrDefault('buildToolsVersion')
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+    versionCode 1
+    versionName "1.0"
+    multiDexEnabled true
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+  sourceSets{
+    main{
+      jniLibs.srcDirs = ['libs']
+    }
+  }
+  lintOptions {
+    disable 'GradleCompatible'
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  packagingOptions {
+    pickFirst 'libs/arm64-v8a/libc++_shared.so'
+    pickFirst 'libs/armeabi-v7a/libc++_shared.so'
+    pickFirst 'libs/armeabi/libc++_shared.so'
+    pickFirst 'lib/armeabi/libc++_shared.so'
+    pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+    pickFirst 'lib/arm64-v8a/libc++_shared.so'
+  }
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+  google()
+}
+
+def kotlin_version = getExtOrDefault('kotlinVersion')
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  api 'com.facebook.react:react-native:+'
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'com.android.support:multidex:1.0.3'
+}

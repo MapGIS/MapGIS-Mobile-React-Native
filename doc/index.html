@@ -1,0 +1,1090 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@mapgis/uniform-core-react-native</title>
+	<meta name="description" content="Documentation for @mapgis/uniform-core-react-native">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@mapgis/uniform-core-react-native</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@mapgis/uniform-core-react-native</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#mapgis-uniform-core-react-native" id="mapgis-uniform-core-react-native" style="color: inherit; text-decoration: none;">
+					<h1>MapGIS-Uniform-Core-React-Native</h1>
+				</a>
+				<p>MapGIS Uniform Core for React Native，是MapGIS推出的一款基于React Native的跨平台移动开发框架，用户可以基于它使用JavaScript开发出在Android和iOS平台下运行的原生移动GIS应用。</p>
+				<a href="#安装" id="安装" style="color: inherit; text-decoration: none;">
+					<h2>安装</h2>
+				</a>
+				<p>在React Native项目中安装 <code>@mapgis/uniform-core-react-native</code> 包。</p>
+				<pre><code class="language-bash"><span style="color: #000000">yarn add @mapgis/uniform-core-react-native</span>
+<span style="color: #008000"># or with npm</span>
+<span style="color: #008000"># npm install @mapgis/uniform-core-react-native</span>
+</code></pre>
+				<a href="#链接原生库" id="链接原生库" style="color: inherit; text-decoration: none;">
+					<h3>链接原生库</h3>
+				</a>
+				<ul>
+					<li><p><strong>React Native 0.60 and higher</strong></p>
+						<p><a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">linking is automatic</a>，不需要执行任何操作。</p>
+					</li>
+					<li><p><strong>React Native 0.59 and lower</strong></p>
+						<p>如果您使用的是旧版本的React Native，则需要手动链接：</p>
+						<pre><code class="language-sh"><span style="color: #000000">react-native link @mapgis/uniform-core-react-native</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#用法" id="用法" style="color: inherit; text-decoration: none;">
+					<h2>用法</h2>
+				</a>
+				<pre><code class="language-js"><span style="color: #008000">// In App.js</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000">, { </span><span style="color: #001080">Component</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;react&quot;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Platform</span><span style="color: #000000">, </span><span style="color: #001080">StyleSheet</span><span style="color: #000000">, </span><span style="color: #001080">View</span><span style="color: #000000">, </span><span style="color: #001080">PermissionsAndroid</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;react-native&quot;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Environment</span><span style="color: #000000">, </span><span style="color: #001080">MGMapView</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@mapgis/uniform-core-react-native&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">App</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Component</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">onGetInstance</span><span style="color: #000000"> = </span><span style="color: #001080">mapView</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">mapView</span><span style="color: #000000"> = </span><span style="color: #001080">mapView</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">openMap</span><span style="color: #000000">();</span>
+<span style="color: #000000">  };</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">openMap</span><span style="color: #000000"> = </span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">//请求权限</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">requestMultiplePermission</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">//初始化环境目录</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">environmnet</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">Environment</span><span style="color: #000000">.</span><span style="color: #795E26">createInstance</span><span style="color: #000000">();</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">environmnet</span><span style="color: #000000">.</span><span style="color: #795E26">initialize</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;/storage/emulated/0/MapGISSample/&quot;</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">//请求授权</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">environmnet</span><span style="color: #000000">.</span><span style="color: #795E26">requestAuthorization</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">//加载文档</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">mapView</span><span style="color: #000000">.</span><span style="color: #795E26">loadFromFile</span><span style="color: #000000">(</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;/storage/emulated/0/MapGISSample/Map/MapShow/WuHan/WuHan.mapx&quot;</span>
+<span style="color: #000000">    );</span>
+<span style="color: #000000">  };</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">render</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
+<span style="color: #000000">      </span><span style="color: #800000">&lt;</span><span style="color: #267F99">View</span><span style="color: #000000"> </span><span style="color: #FF0000">style</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">styles</span><span style="color: #000000FF">.</span><span style="color: #001080">container</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;</span><span style="color: #267F99">MGMapView</span>
+<span style="color: #000000">          </span><span style="color: #FF0000">ref</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;mapView&quot;</span>
+<span style="color: #000000">          </span><span style="color: #FF0000">onGetInstance</span><span style="color: #000000">=</span><span style="color: #0000FF">{this</span><span style="color: #000000FF">.</span><span style="color: #001080">onGetInstance</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">          </span><span style="color: #FF0000">style</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">styles</span><span style="color: #000000FF">.</span><span style="color: #001080">mapView</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">        </span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">      </span><span style="color: #800000">&lt;/</span><span style="color: #267F99">View</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    );</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">checkGranted</span><span style="color: #000000">(</span><span style="color: #001080">granteds</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">values</span><span style="color: #000000"> = </span><span style="color: #267F99">Object</span><span style="color: #000000">.</span><span style="color: #795E26">values</span><span style="color: #000000">(</span><span style="color: #001080">granteds</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">isGranted</span><span style="color: #000000"> = </span><span style="color: #0000FF">true</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">for</span><span style="color: #000000"> (</span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> = </span><span style="color: #098658">0</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000"> &lt; </span><span style="color: #001080">values</span><span style="color: #000000">.</span><span style="color: #001080">length</span><span style="color: #000000"> - </span><span style="color: #098658">1</span><span style="color: #000000">; </span><span style="color: #001080">i</span><span style="color: #000000">++) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">values</span><span style="color: #000000">[</span><span style="color: #001080">i</span><span style="color: #000000">] != </span><span style="color: #001080">values</span><span style="color: #000000">[</span><span style="color: #001080">i</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">]) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">isGranted</span><span style="color: #000000"> = </span><span style="color: #0000FF">false</span><span style="color: #000000">;</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">break</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">isGranted</span><span style="color: #000000"> &amp;&amp; </span><span style="color: #001080">values</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">] === </span><span style="color: #001080">PermissionsAndroid</span><span style="color: #000000">.</span><span style="color: #0070C1">RESULTS</span><span style="color: #000000">.</span><span style="color: #0070C1">GRANTED</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">requestMultiplePermission</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">Platform</span><span style="color: #000000">.</span><span style="color: #0070C1">OS</span><span style="color: #000000"> === </span><span style="color: #A31515">&quot;ios&quot;</span><span style="color: #000000">) </span><span style="color: #AF00DB">return</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">try</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">permissions</span><span style="color: #000000"> = [</span>
+<span style="color: #000000">      </span><span style="color: #001080">PermissionsAndroid</span><span style="color: #000000">.</span><span style="color: #0070C1">PERMISSIONS</span><span style="color: #000000">.</span><span style="color: #0070C1">WRITE_EXTERNAL_STORAGE</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">PermissionsAndroid</span><span style="color: #000000">.</span><span style="color: #0070C1">PERMISSIONS</span><span style="color: #000000">.</span><span style="color: #0070C1">READ_PHONE_STATE</span>
+<span style="color: #000000">    ];</span>
+<span style="color: #000000">    </span><span style="color: #008000">//返回得是对象类型</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">granteds</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">PermissionsAndroid</span><span style="color: #000000">.</span><span style="color: #795E26">requestMultiple</span><span style="color: #000000">(</span><span style="color: #001080">permissions</span><span style="color: #000000">);</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #795E26">checkGranted</span><span style="color: #000000">(</span><span style="color: #001080">granteds</span><span style="color: #000000">)) {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;授权拒绝，无法正常使用本应用&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  } </span><span style="color: #AF00DB">catch</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">throw</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;授权失败，无法正常使用本应用&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">styles</span><span style="color: #000000"> = </span><span style="color: #001080">StyleSheet</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">container:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">flex:</span><span style="color: #000000"> </span><span style="color: #098658">1</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">mapView:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">flex:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">alignSelf:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;stretch&quot;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/AClsInfo.html" class="tsd-kind-icon">ACls<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Angle.html" class="tsd-kind-icon">Angle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/AnnInfo.html" class="tsd-kind-icon">Ann<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Annotation.html" class="tsd-kind-icon">Annotation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/AnnotationCls.html" class="tsd-kind-icon">Annotation<wbr>Cls</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/AnnotationView.html" class="tsd-kind-icon">Annotation<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/AnnotationsOverlay.html" class="tsd-kind-icon">Annotations<wbr>Overlay</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BombAnalysis.html" class="tsd-kind-icon">Bomb<wbr>Analysis</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BombCustomFeatureAttributeCallBack.html" class="tsd-kind-icon">Bomb<wbr>Custom<wbr>Feature<wbr>Attribute<wbr>Call<wbr>Back</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BombInfo.html" class="tsd-kind-icon">Bomb<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BombInfoAttribute.html" class="tsd-kind-icon">Bomb<wbr>Info<wbr>Attribute</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BombInfoAxis.html" class="tsd-kind-icon">Bomb<wbr>Info<wbr>Axis</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/BufferOption.html" class="tsd-kind-icon">Buffer<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Calendar.html" class="tsd-kind-icon">Calendar</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Camera.html" class="tsd-kind-icon">Camera</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ClassItemValue.html" class="tsd-kind-icon">Class<wbr>Item<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ClipLineOption.html" class="tsd-kind-icon">Clip<wbr>Line<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Color.html" class="tsd-kind-icon">Color</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ConfigOption.html" class="tsd-kind-icon">Config<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/CoordinateConvert.html" class="tsd-kind-icon">Coordinate<wbr>Convert</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/CoordinateConvertParameter.html" class="tsd-kind-icon">Coordinate<wbr>Convert<wbr>Parameter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/CustomFeatureAttributeCallBack.html" class="tsd-kind-icon">Custom<wbr>Feature<wbr>Attribute<wbr>Call<wbr>Back</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DBFileInfo.html" class="tsd-kind-icon">DBFile<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DBInfo.html" class="tsd-kind-icon">DBInfo</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DataBase.html" class="tsd-kind-icon">Data<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DataConvert.html" class="tsd-kind-icon">Data<wbr>Convert</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DeleteIdenticalOption.html" class="tsd-kind-icon">Delete<wbr>Identical<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DeviceMotionDataSource.html" class="tsd-kind-icon">Device<wbr>Motion<wbr>Data<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DeviceMotionDataSourceLBS.html" class="tsd-kind-icon">Device<wbr>Motion<wbr>Data<wbr>SourceLBS</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DissolveOption.html" class="tsd-kind-icon">Dissolve<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DistanceMeasurement.html" class="tsd-kind-icon">Distance<wbr>Measurement</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Document.html" class="tsd-kind-icon">Document</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/DocumentItem.html" class="tsd-kind-icon">Document<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Dot.html" class="tsd-kind-icon">Dot</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Dot3D.html" class="tsd-kind-icon">Dot3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Dots.html" class="tsd-kind-icon">Dots</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Dots3D.html" class="tsd-kind-icon">Dots3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/EliminateRegOption.html" class="tsd-kind-icon">Eliminate<wbr>Reg<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ElpParam.html" class="tsd-kind-icon">Elp<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ElpTransParam.html" class="tsd-kind-icon">Elp<wbr>Trans<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ElpTransformation.html" class="tsd-kind-icon">Elp<wbr>Transformation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/EnvConfig.html" class="tsd-kind-icon">Env<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Environment.html" class="tsd-kind-icon">Environment</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ExtField.html" class="tsd-kind-icon">Ext<wbr>Field</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Feature.html" class="tsd-kind-icon">Feature</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Feature3D.html" class="tsd-kind-icon">Feature3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FeatureEdit.html" class="tsd-kind-icon">Feature<wbr>Edit</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FeaturePagedResult.html" class="tsd-kind-icon">Feature<wbr>Paged<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FeaturePagedResult3D.html" class="tsd-kind-icon">Feature<wbr>Paged<wbr>Result3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FeatureQuery.html" class="tsd-kind-icon">Feature<wbr>Query</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FeatureQuery3D.html" class="tsd-kind-icon">Feature<wbr>Query3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Field.html" class="tsd-kind-icon">Field</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Fields.html" class="tsd-kind-icon">Fields</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FileExtendInfo.html" class="tsd-kind-icon">File<wbr>Extend<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FillStyle.html" class="tsd-kind-icon">Fill<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/FlyManager.html" class="tsd-kind-icon">Fly<wbr>Manager</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GDBCreateParam.html" class="tsd-kind-icon">GDBCreate<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GDBSysInfo.html" class="tsd-kind-icon">GDBSys<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeneralVectorLabel.html" class="tsd-kind-icon">General<wbr>Vector<wbr>Label</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoAnno.html" class="tsd-kind-icon">Geo<wbr>Anno</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoElement.html" class="tsd-kind-icon">Geo<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoLine.html" class="tsd-kind-icon">Geo<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoMultiLine.html" class="tsd-kind-icon">Geo<wbr>Multi<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoMultiPoint.html" class="tsd-kind-icon">Geo<wbr>Multi<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoPoint.html" class="tsd-kind-icon">Geo<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoPolygon.html" class="tsd-kind-icon">Geo<wbr>Polygon</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeoVarLine.html" class="tsd-kind-icon">Geo<wbr>Var<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeomInfo.html" class="tsd-kind-icon">Geom<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeomTopoCheck.html" class="tsd-kind-icon">Geom<wbr>Topo<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeomTopoFix.html" class="tsd-kind-icon">Geom<wbr>Topo<wbr>Fix</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Geometry.html" class="tsd-kind-icon">Geometry</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Geometry3D.html" class="tsd-kind-icon">Geometry3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeometryOperator.html" class="tsd-kind-icon">Geometry<wbr>Operator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GeometryParams.html" class="tsd-kind-icon">Geometry<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Graphic.html" class="tsd-kind-icon">Graphic</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Graphic3D.html" class="tsd-kind-icon">Graphic3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Graphic3DsOverlay.html" class="tsd-kind-icon">Graphic3<wbr>DsOverlay</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Graphic3DsOverlays.html" class="tsd-kind-icon">Graphic3<wbr>DsOverlays</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicCircle.html" class="tsd-kind-icon">Graphic<wbr>Circle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicCircle3D.html" class="tsd-kind-icon">Graphic<wbr>Circle3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicEllipse3D.html" class="tsd-kind-icon">Graphic<wbr>Ellipse3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicHeatmap.html" class="tsd-kind-icon">Graphic<wbr>Heatmap</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicImage.html" class="tsd-kind-icon">Graphic<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicImage3D.html" class="tsd-kind-icon">Graphic<wbr>Image3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicModel.html" class="tsd-kind-icon">Graphic<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicMultiPoint.html" class="tsd-kind-icon">Graphic<wbr>Multi<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicMultiPoint3D.html" class="tsd-kind-icon">Graphic<wbr>Multi<wbr>Point3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPlaceMarker.html" class="tsd-kind-icon">Graphic<wbr>Place<wbr>Marker</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPoint.html" class="tsd-kind-icon">Graphic<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPoint3D.html" class="tsd-kind-icon">Graphic<wbr>Point3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPolygon.html" class="tsd-kind-icon">Graphic<wbr>Polygon</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPolygon3D.html" class="tsd-kind-icon">Graphic<wbr>Polygon3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPolylin.html" class="tsd-kind-icon">Graphic<wbr>Polylin</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicPolyline3D.html" class="tsd-kind-icon">Graphic<wbr>Polyline3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicStippleLine.html" class="tsd-kind-icon">Graphic<wbr>Stipple<wbr>Line</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicText.html" class="tsd-kind-icon">Graphic<wbr>Text</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicText3D.html" class="tsd-kind-icon">Graphic<wbr>Text3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicsOverlay.html" class="tsd-kind-icon">Graphics<wbr>Overlay</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GraphicsOverlays.html" class="tsd-kind-icon">Graphics<wbr>Overlays</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GroupLayer.html" class="tsd-kind-icon">Group<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/GroupLayer3D.html" class="tsd-kind-icon">Group<wbr>Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/HeatmapPoint.html" class="tsd-kind-icon">Heatmap<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IBasCls.html" class="tsd-kind-icon">IBas<wbr>Cls</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IDPair.html" class="tsd-kind-icon">IDPair</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IGeodataXform.html" class="tsd-kind-icon">IGeodata<wbr>Xform</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IVectorCls.html" class="tsd-kind-icon">IVector<wbr>Cls</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IXClsInfo.html" class="tsd-kind-icon">IXCls<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IdentifyLayerResult.html" class="tsd-kind-icon">Identify<wbr>Layer<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Image.html" class="tsd-kind-icon">Image</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ImageLayer.html" class="tsd-kind-icon">Image<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IntList.html" class="tsd-kind-icon">Int<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/IntRef.html" class="tsd-kind-icon">Int<wbr>Ref</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/JoinEdgeOption.html" class="tsd-kind-icon">Join<wbr>Edge<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Label.html" class="tsd-kind-icon">Label</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LabelInfo.html" class="tsd-kind-icon">Label<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Layer3D.html" class="tsd-kind-icon">Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Layer3DEnum.html" class="tsd-kind-icon">Layer3DEnum</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LayerEnum.html" class="tsd-kind-icon">Layer<wbr>Enum</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LayerSampleInfo.html" class="tsd-kind-icon">Layer<wbr>Sample<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LinInfo.html" class="tsd-kind-icon">Lin<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LinePlaceInfo.html" class="tsd-kind-icon">Line<wbr>Place<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LineStyle.html" class="tsd-kind-icon">Line<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LinkLineOption.html" class="tsd-kind-icon">Link<wbr>Line<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LogEventReceiver.html" class="tsd-kind-icon">Log<wbr>Event<wbr>Receiver</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LogMng.html" class="tsd-kind-icon">Log<wbr>Mng</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LogSysInfo.html" class="tsd-kind-icon">Log<wbr>Sys<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/LogUserInfo.html" class="tsd-kind-icon">Log<wbr>User<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MGMapView.html" class="tsd-kind-icon">MGMap<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MGSceneView.html" class="tsd-kind-icon">MGScene<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MRRect.html" class="tsd-kind-icon">MRRect</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MagnifierOption.html" class="tsd-kind-icon">Magnifier<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Map.html" class="tsd-kind-icon">Map</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapGisEnv.html" class="tsd-kind-icon">Map<wbr>Gis<wbr>Env</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapLayer.html" class="tsd-kind-icon">Map<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapPosition.html" class="tsd-kind-icon">Map<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapRefLayer.html" class="tsd-kind-icon">Map<wbr>Ref<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapServer.html" class="tsd-kind-icon">Map<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MapView.html" class="tsd-kind-icon">Map<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Maps.html" class="tsd-kind-icon">Maps</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MeasureContentWillChangeListener.html" class="tsd-kind-icon">Measure<wbr>Content<wbr>Will<wbr>Change<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MeasureOption.html" class="tsd-kind-icon">Measure<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MeasurementChangedEvent.html" class="tsd-kind-icon">Measurement<wbr>Changed<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ModelCacheLayer3D.html" class="tsd-kind-icon">Model<wbr>Cache<wbr>Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MultiClassTheme.html" class="tsd-kind-icon">Multi<wbr>Class<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MultiClassThemeInfo.html" class="tsd-kind-icon">Multi<wbr>Class<wbr>Theme<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MultiTouchSceneManipulator.html" class="tsd-kind-icon">Multi<wbr>Touch<wbr>Scene<wbr>Manipulator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/MultipleRingBufferOption.html" class="tsd-kind-icon">Multiple<wbr>Ring<wbr>Buffer<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ObjectIDs.html" class="tsd-kind-icon">ObjectIDs</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ObjectManager.html" class="tsd-kind-icon">Object<wbr>Manager</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/OutputInfo.html" class="tsd-kind-icon">Output<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/OutputInfoEx.html" class="tsd-kind-icon">Output<wbr>Info<wbr>Ex</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/OverlayOption.html" class="tsd-kind-icon">Overlay<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Pnt3Struct.html" class="tsd-kind-icon">Pnt3<wbr>Struct</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/PntInfo.html" class="tsd-kind-icon">Pnt<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/PointF.html" class="tsd-kind-icon">PointF</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/PointPlaceInfo.html" class="tsd-kind-icon">Point<wbr>Place<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/PointStyle.html" class="tsd-kind-icon">Point<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Precision.html" class="tsd-kind-icon">Precision</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/QueryDef.html" class="tsd-kind-icon">Query<wbr>Def</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RangeTheme.html" class="tsd-kind-icon">Range<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RangeThemeInfo.html" class="tsd-kind-icon">Range<wbr>Theme<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Raster.html" class="tsd-kind-icon">Raster</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RasterHistogram.html" class="tsd-kind-icon">Raster<wbr>Histogram</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RasterStatistics.html" class="tsd-kind-icon">Raster<wbr>Statistics</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RasterSurfaceOp.html" class="tsd-kind-icon">Raster<wbr>Surface<wbr>Op</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RebuildOption.html" class="tsd-kind-icon">Rebuild<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Record.html" class="tsd-kind-icon">Record</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RecordSet.html" class="tsd-kind-icon">Record<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Rect.html" class="tsd-kind-icon">Rect</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Rect3D.html" class="tsd-kind-icon">Rect3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RegInfo.html" class="tsd-kind-icon">Reg<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/RegionPlaceInfo.html" class="tsd-kind-icon">Region<wbr>Place<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SFClsInfo.html" class="tsd-kind-icon">SFCls<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SFeatureCls.html" class="tsd-kind-icon">SFeature<wbr>Cls</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SRefData.html" class="tsd-kind-icon">SRef<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Scene.html" class="tsd-kind-icon">Scene</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SceneManipulator.html" class="tsd-kind-icon">Scene<wbr>Manipulator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SelectionProperties.html" class="tsd-kind-icon">Selection<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SelectionStyle.html" class="tsd-kind-icon">Selection<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Server.html" class="tsd-kind-icon">Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ServerLayer3D.html" class="tsd-kind-icon">Server<wbr>Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SimpleLabel.html" class="tsd-kind-icon">Simple<wbr>Label</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SimpleTheme.html" class="tsd-kind-icon">Simple<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Size.html" class="tsd-kind-icon">Size</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SketchEditor.html" class="tsd-kind-icon">Sketch<wbr>Editor</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SketchStyle.html" class="tsd-kind-icon">Sketch<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SnappingOption.html" class="tsd-kind-icon">Snapping<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SpaCalculator.html" class="tsd-kind-icon">Spa<wbr>Calculator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SpaProjection.html" class="tsd-kind-icon">Spa<wbr>Projection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SpatialAnalysis.html" class="tsd-kind-icon">Spatial<wbr>Analysis</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SystemLibrary.html" class="tsd-kind-icon">System<wbr>Library</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/SystemLibrarys.html" class="tsd-kind-icon">System<wbr>Librarys</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TerrainAnalysis.html" class="tsd-kind-icon">Terrain<wbr>Analysis</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TerrainLayer3D.html" class="tsd-kind-icon">Terrain<wbr>Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TextAnnInfo.html" class="tsd-kind-icon">Text<wbr>Ann<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TextAnno.html" class="tsd-kind-icon">Text<wbr>Anno</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TextStyle.html" class="tsd-kind-icon">Text<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Theme.html" class="tsd-kind-icon">Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/ThemeInfo.html" class="tsd-kind-icon">Theme<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Themes.html" class="tsd-kind-icon">Themes</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/TileMapServer.html" class="tsd-kind-icon">Tile<wbr>Map<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Transformation.html" class="tsd-kind-icon">Transformation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/UUID.html" class="tsd-kind-icon">UUID</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/UniqueTheme.html" class="tsd-kind-icon">Unique<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/UniqueThemeInfo.html" class="tsd-kind-icon">Unique<wbr>Theme<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VectorLabel.html" class="tsd-kind-icon">Vector<wbr>Label</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VectorLayer.html" class="tsd-kind-icon">Vector<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VectorLayer3D.html" class="tsd-kind-icon">Vector<wbr>Layer3D</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VectorMapServer.html" class="tsd-kind-icon">Vector<wbr>Map<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VectorTheme.html" class="tsd-kind-icon">Vector<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VideoSource.html" class="tsd-kind-icon">Video<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VideoSourceDefault.html" class="tsd-kind-icon">Video<wbr>Source<wbr>Default</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/Viewpoint.html" class="tsd-kind-icon">Viewpoint</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/VisualMap.html" class="tsd-kind-icon">Visual<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AllOtherDataItemInfoSource" class="tsd-kind-icon">All<wbr>Other<wbr>Data<wbr>Item<wbr>Info<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AltitudeMode" class="tsd-kind-icon">Altitude<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AnnType" class="tsd-kind-icon">Ann<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AtmosphereEffectMode" class="tsd-kind-icon">Atmosphere<wbr>Effect<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AttIndexType" class="tsd-kind-icon">Att<wbr>Index<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#AxisType" class="tsd-kind-icon">Axis<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#BombType" class="tsd-kind-icon">Bomb<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#CapStyles" class="tsd-kind-icon">Cap<wbr>Styles</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ClassItemType" class="tsd-kind-icon">Class<wbr>Item<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ClipLineMode" class="tsd-kind-icon">Clip<wbr>Line<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ClipType" class="tsd-kind-icon">Clip<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ConnectType" class="tsd-kind-icon">Connect<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ConvertOptionType" class="tsd-kind-icon">Convert<wbr>Option<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#CoordinateType" class="tsd-kind-icon">Coordinate<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DeviceMotionDataSourceType" class="tsd-kind-icon">Device<wbr>Motion<wbr>Data<wbr>Source<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DistanceType" class="tsd-kind-icon">Distance<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DocumentItemType" class="tsd-kind-icon">Document<wbr>Item<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DriverType" class="tsd-kind-icon">Driver<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DuplicateType" class="tsd-kind-icon">Duplicate<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#EliminateMode" class="tsd-kind-icon">Eliminate<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#FieldType" class="tsd-kind-icon">Field<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#FileExtendMode" class="tsd-kind-icon">File<wbr>Extend<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#FileExtendUnit" class="tsd-kind-icon">File<wbr>Extend<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#FlyStatus" class="tsd-kind-icon">Fly<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GeomType" class="tsd-kind-icon">Geom<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GeometryDimension" class="tsd-kind-icon">Geometry<wbr>Dimension</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GeometryType" class="tsd-kind-icon">Geometry<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GraphicImage3DAlignmentMode" class="tsd-kind-icon">Graphic<wbr>Image3DAlignment<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GraphicState" class="tsd-kind-icon">Graphic<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GraphicText3DAlignmentMode" class="tsd-kind-icon">Graphic<wbr>Text3DAlignment<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#GraphicType3D" class="tsd-kind-icon">Graphic<wbr>Type3D</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#HDFType" class="tsd-kind-icon">HDFType</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ImageFormat" class="tsd-kind-icon">Image<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#JoinStyles" class="tsd-kind-icon">Join<wbr>Styles</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LabelBackType" class="tsd-kind-icon">Label<wbr>Back<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LabelGeomType" class="tsd-kind-icon">Label<wbr>Geom<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LabelType" class="tsd-kind-icon">Label<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#Layer3DType" class="tsd-kind-icon">Layer3DType</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LayerState" class="tsd-kind-icon">Layer<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LinePlaceType" class="tsd-kind-icon">Line<wbr>Place<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LineRepeatType" class="tsd-kind-icon">Line<wbr>Repeat<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LineRestrictType" class="tsd-kind-icon">Line<wbr>Restrict<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LineSpreadType" class="tsd-kind-icon">Line<wbr>Spread<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LinkMode" class="tsd-kind-icon">Link<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#LogType" class="tsd-kind-icon">Log<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#MapServerAccessMode" class="tsd-kind-icon">Map<wbr>Server<wbr>Access<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#MapServerType" class="tsd-kind-icon">Map<wbr>Server<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#OverlayAttOptType" class="tsd-kind-icon">Overlay<wbr>Att<wbr>Opt<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#OverlayInfoOptType" class="tsd-kind-icon">Overlay<wbr>Info<wbr>Opt<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#OverlayOptionOverlayType" class="tsd-kind-icon">Overlay<wbr>Option<wbr>Overlay<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#OverlayType" class="tsd-kind-icon">Overlay<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#PixelType" class="tsd-kind-icon">Pixel<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#PointEightLocationPriority" class="tsd-kind-icon">Point<wbr>Eight<wbr>Location<wbr>Priority</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#PointPlaceType" class="tsd-kind-icon">Point<wbr>Place<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#ProgressStatus" class="tsd-kind-icon">Progress<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#RasterFormat" class="tsd-kind-icon">Raster<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#RasterResampling" class="tsd-kind-icon">Raster<wbr>Resampling</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRSType" class="tsd-kind-icon">SRSType</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefEPType" class="tsd-kind-icon">SRefEPType</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefElevtype" class="tsd-kind-icon">SRef<wbr>Elevtype</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefPrjType" class="tsd-kind-icon">SRef<wbr>Prj<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefType" class="tsd-kind-icon">SRef<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefVDatumType" class="tsd-kind-icon">SRefVDatum<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SRefZoneType" class="tsd-kind-icon">SRef<wbr>Zone<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SceneManipulatorType" class="tsd-kind-icon">Scene<wbr>Manipulator<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SceneMode" class="tsd-kind-icon">Scene<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SetCursorType" class="tsd-kind-icon">Set<wbr>Cursor<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SketchDataType" class="tsd-kind-icon">Sketch<wbr>Data<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SourceInfoType" class="tsd-kind-icon">Source<wbr>Info<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SpaQueryMode" class="tsd-kind-icon">Spa<wbr>Query<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SpatialQueryType" class="tsd-kind-icon">Spatial<wbr>Query<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SplitMode" class="tsd-kind-icon">Split<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SunLightingMode" class="tsd-kind-icon">Sun<wbr>Lighting<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SysConfigDirType" class="tsd-kind-icon">Sys<wbr>Config<wbr>Dir<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#SysConfigType" class="tsd-kind-icon">Sys<wbr>Config<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#XClsEnumType" class="tsd-kind-icon">XCls<wbr>Enum<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#XClsType" class="tsd-kind-icon">XCls<wbr>Type</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
