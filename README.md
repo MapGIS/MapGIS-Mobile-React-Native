@@ -1,15 +1,15 @@
-# MapGIS-Uniform-Core-React-Native
+# MapGIS-Mobile-React-Native
 
-MapGIS Uniform Core for React Native，是MapGIS推出的一款基于React Native的跨平台移动开发框架，用户可以基于它使用JavaScript开发出在Android和iOS平台下运行的原生移动GIS应用。
+MapGIS Mobile for React Native，是MapGIS推出的一款基于React Native的跨平台移动开发框架，用户可以基于它使用JavaScript开发出在Android和iOS平台下运行的原生移动GIS应用。
 
 ## 安装
 
-在React Native项目中安装 `@mapgis/uniform-core-react-native` 包。
+在React Native项目中安装 `@mapgis/mobile-react-native` 包。
 
 ```bash
-yarn add @mapgis/uniform-core-react-native
+yarn add @mapgis/mobile-react-native
 # or with npm
-# npm install @mapgis/uniform-core-react-native
+# npm install @mapgis/mobile-react-native
 ```
 
 ### 链接原生库
@@ -23,7 +23,7 @@ yarn add @mapgis/uniform-core-react-native
   如果您使用的是旧版本的React Native，则需要手动链接：
 
   ```sh
-  react-native link @mapgis/uniform-core-react-native
+  react-native link @mapgis/mobile-react-native
   ```
 
 ## 用法
@@ -33,7 +33,7 @@ yarn add @mapgis/uniform-core-react-native
 // In App.js
 import React, { Component } from "react";
 import { Platform, StyleSheet, View, PermissionsAndroid } from "react-native";
-import { Environment, MGMapView } from "@mapgis/uniform-core-react-native";
+import { Environment, MGMapView } from "@mapgis/mobile-react-native";
 
 export default class App extends Component {
   onGetInstance = mapView => {

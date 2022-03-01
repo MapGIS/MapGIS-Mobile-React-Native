@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@mapgis/uniform-core-react-native": [
+      "@mapgis/mobile-react-native": [
         "src/index.tsx"
       ]
     },

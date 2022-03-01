@@ -1,5 +1,5 @@
 {
-  "name": "@mapgis/uniform-core-react-native",
+  "name": "@mapgis/mobile-react-native",
   "version": "10.5.6",
   "description": "MapGIS Mobile for React Native，是MapGIS推出的一款基于React-Native的跨平台移动开发框架，用户可以基于它使用JavaScript开发出在Android和iOS平台下运行的原生移动GIS应用。",
   "main": "src/index.tsx",
@@ -28,13 +28,13 @@
     "mapgis",
     "map"
   ],
-  "repository": "https://github.com/MapGIS/Mapgis-Uniform-Core-React-Native",
-  "author": "MapGIS (https://github.com/MapGIS/Mapgis-Uniform-Core-React-Native)",
+  "repository": "https://github.com/MapGIS/MapGIS-Mobile-React-Native",
+  "author": "MapGIS (https://github.com/MapGIS/MapGIS-Mobile-React-Native)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MapGIS/Mapgis-Uniform-Core-React-Native/issues"
+    "url": "https://github.com/MapGIS/MapGIS-Mobile-React-Native/issues"
   },
-  "homepage": "https://github.com/MapGIS/Mapgis-Uniform-Core-React-Native#readme",
+  "homepage": "https://github.com/MapGIS/MapGIS-Mobile-React-Native#readme",
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.0",
